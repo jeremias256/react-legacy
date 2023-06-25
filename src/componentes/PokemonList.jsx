@@ -14,6 +14,7 @@ class PokemonList extends Component {
           <PokemonCard
             name={pokemon.name}
             key={`${pokemon.name}-${index}`}
+            image={pokemon.sprites.front_default}
           />
         ))}
       </div>

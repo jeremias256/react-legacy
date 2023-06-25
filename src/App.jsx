@@ -5,7 +5,7 @@ import Searcher from './componentes/Searcher';
 import PokemonList from './componentes/PokemonList';
 import { Col } from 'antd';
 /* ---------------------------------- utils --------------------------------- */
-import { getPokemon } from './api';
+import { getPokemon, getPokemonDetails } from './api';
 /* --------------------------------- styles --------------------------------- */
 import logo from './static/logo.svg';
 import './App.css';
@@ -29,7 +29,11 @@ class App extends Component {
 
     try {
       const pokemonsRes = await getPokemon();
-      setPokemons({ pokemons: pokemonsRes });
+      const pokemonsDetailed = await Promise.all(pokemonsRes.map( pokemon => 
+        getPokemonDetails(pokemon))
+      );
+
+      setPokemons({ pokemons: pokemonsDetailed });
     }
     catch(error) {
       console.log('Error en fetch pokemons', error);
@@ -38,23 +42,24 @@ class App extends Component {
 
   render() {
     const { pokemons } = this.props;
-
+    console.log('🚀 - file: App.jsx:45 - App - render - pokemons:', pokemons);
+    
     return (
       <div className="App">
-        <Col span={4} offset={10}>
+        {/* <Col span={4} offset={10}>
           <img src={logo} alt='Pokedux'/>
         </Col>
         <Col span={8} offset={8}>
           <Searcher/>
         </Col>
-        <PokemonList pokemons={pokemons.pokemons}/>
+        <PokemonList pokemons={pokemons.pokemons}/> */}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  pokemons: state.pokemons,
+  pokemons: state.pokemons || [],
 });
 
 const mapDispatchToProps = (dispatch) => ({

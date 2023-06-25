@@ -7,13 +7,13 @@ import {StarOutlined} from '@ant-design/icons';
 
 class PokemonCard extends Component {
   render() {
-    const { name } = this.props;
+    const { name, image } = this.props;
 
     return (
       <Card
         style={{ width: 250 }}
         title={name}
-        cover={<img src="imagen" alt={name} />}
+        // cover={<img src={image} alt={name} />}
         extra={<StarOutlined />}
       >
         <Meta description='fire, magic' />
