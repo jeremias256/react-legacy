@@ -1,5 +1,5 @@
 
-import React, {Component} from 'react';
+import {Component} from 'react';
 /* ------------------------------- componentes ------------------------------ */
 import {Card} from 'antd';
 import Meta from 'antd/lib/card/Meta';

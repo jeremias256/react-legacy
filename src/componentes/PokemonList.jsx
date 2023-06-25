@@ -1,18 +1,19 @@
 
-import React, {Component} from 'react';
+import {Component} from 'react';
 /* ----------------------------- componentes ----------------------------- */
 import PokemonCard from './PokemonCard';
 
 class PokemonList extends Component {
+
   render() {
     const { pokemons } = this.props;
 
     return (
       <div className='PokemonList'>
-        {pokemons.map(pokemon => (
+        {pokemons.map((pokemon, index) => (
           <PokemonCard
             name={pokemon.name}
-            key={pokemon.name}
+            key={`${pokemon.name}-${index}`}
           />
         ))}
       </div>
